@@ -19,33 +19,15 @@ public class Tree {
     }
 
 
+
     public static Tree CreateTree1() {
-        Tree tree_one = new Tree(20,
-                new Tree(7,
-                        new Tree(4, null, new Tree(6, null, null)),
-                        new Tree(9, null, null)),
-                new Tree(35,
-                        new Tree(31,
-                                new Tree(28,
-                                        null, null), null),
-                        new Tree(40,
-                                new Tree(38, null, null),
-                                new Tree(52, null, null))));
+        Tree tree_one = new Tree();
 
         return tree_one;
     }
 
     public static Tree CreateTree2() {
-        Tree tree_two = new Tree(20,
-                new Tree(35,
-                        new Tree(31,
-                                new Tree(28, null, null), null),
-                        new Tree(40,
-                                new Tree(52, null, null),
-                                new Tree(38, null, null))),
-                new Tree(7,
-                        new Tree(9, null, null),
-                        new Tree(4, null, new Tree(6, null, null))));
+        Tree tree_two = new Tree();
         return tree_two;
     }
 
@@ -64,7 +46,7 @@ public class Tree {
         return sum;
     }
 
-    public static void is_simple(Tree tree_one, Tree tree_two) {
+    public static void is_similar(Tree tree_one, Tree tree_two) {
         if(flag) {
             //если есть хоть какой-то путь из вершин
             if ((tree_one.left != null || tree_one.right != null) && (tree_two.left != null || tree_two.right != null)) {
@@ -73,14 +55,14 @@ public class Tree {
                     //если они попарно равны
                     if (tree_one.left.value == tree_two.left.value && tree_one.right.value == tree_two.right.value) {
                         flag = true;
-                        is_simple(tree_one.left, tree_two.left);
-                        is_simple(tree_one.right, tree_two.right);
+                        is_similar(tree_one.left, tree_two.left);
+                        is_similar(tree_one.right, tree_two.right);
                     }
                     //если они равны сикось накось
                     else if (tree_one.left.value == tree_two.right.value && tree_one.right.value == tree_two.left.value) {
                         flag = true;
-                        is_simple(tree_one.left, tree_two.right);
-                        is_simple(tree_one.right, tree_two.left);
+                        is_similar(tree_one.left, tree_two.right);
+                        is_similar(tree_one.right, tree_two.left);
                     } else {
                         flag = false;
                         return;
@@ -90,7 +72,7 @@ public class Tree {
                 else if (tree_one.left == null && tree_two.left == null) {
                     if (tree_one.right.value == tree_two.right.value) {
                         flag = true;
-                        is_simple(tree_one.right, tree_two.right);
+                        is_similar(tree_one.right, tree_two.right);
                     } else {
                         flag = false;
                         return;
@@ -100,7 +82,7 @@ public class Tree {
                 else if (tree_one.right == null && tree_two.right == null) {
                     if (tree_one.left.value == tree_two.left.value) {
                         flag = true;
-                        is_simple(tree_one.left, tree_one.left);
+                        is_similar(tree_one.left, tree_one.left);
                     } else {
                         flag = false;
                         return;
@@ -116,7 +98,7 @@ public class Tree {
         Tree tree_2 = CreateTree2();
         if (tree_1.value == tree_2.value) {
             flag = true;
-            is_simple(tree_1, tree_2);
+            is_similar(tree_1, tree_2);
         }
         if(flag) {
             System.out.println("Is similar");
