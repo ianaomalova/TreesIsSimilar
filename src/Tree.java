@@ -67,7 +67,7 @@ public class Tree {
     public static void is_similar(Tree tree_one, Tree tree_two) {
         if(flag) {
             //если есть хоть какой-то путь из вершин
-            if ((tree_one.left != null || tree_one.right != null) && (tree_two.left != null || tree_two.right != null)) {
+            if ((tree_one.left != null || tree_one.right != null) || (tree_two.left != null || tree_two.right != null)) {
                 //если оба ребенка есть
                 if (tree_one.left != null && tree_two.left != null && tree_one.right != null && tree_two.right != null) {
                     //если они попарно равны
